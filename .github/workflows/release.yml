@@ -13,16 +13,16 @@ jobs:
         uses: actions/checkout@v4
       - name: Build artifact
         run:  echo "Hello world on $(date +f %Y-%M-%d)" > product.txt
-      - name: Create tag
-        uses: actions/github-script@v8
-        with:
-          script: |
-            github.rest.git.createRef({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              ref: 'refs/tags/pukkels',
-              sha: context.sha
-            })
+      # - name: Create tag
+      #   uses: actions/github-script@v8
+      #   with:
+      #     script: |
+      #       github.rest.git.createRef({
+      #         owner: context.repo.owner,
+      #         repo: context.repo.repo,
+      #         ref: 'refs/tags/pukkels',
+      #         sha: context.sha
+      #       })
       - name: Create Release
         run: gh release create pukkels --notes "my first release" --latest=false
         env: 
