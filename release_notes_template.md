@@ -5,3 +5,4 @@ It packages netbeans plus zuul jdk 25.
 
 hello
 hello
+nix
