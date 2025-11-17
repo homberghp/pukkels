@@ -28,4 +28,4 @@ jobs:
         env: 
           GH_TOKEN: ${{ github.token }}
       - name: Add product
-        run: gh release upload --clobber product.txt
+        run: gh release upload ${{ github.ref }}--clobber product.txt
