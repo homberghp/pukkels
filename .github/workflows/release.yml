@@ -24,7 +24,7 @@ jobs:
       #         sha: context.sha
       #       })
       - name: Create Release
-        run: gh release create pukkels --notes "my first release" --latest=false
+        run: gh release create ${{ github.ref }} --notes "my first release" --latest=false
         env: 
           GH_TOKEN: ${{ github.token }}
       - name: Add product
