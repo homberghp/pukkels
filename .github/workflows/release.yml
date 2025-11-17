@@ -25,5 +25,7 @@ jobs:
             })
       - name: Create Release
         run: gh release create pukkels --notes "my first release" --latest=false
+        env: 
+          GH_TOKEN: ${{ github.token }}
       - name: Add product
         run: gh release upload --clobber product.txt
