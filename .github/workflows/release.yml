@@ -12,7 +12,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Build artifact
-        run:  echo "Hello world on $(date +f %Y-%M-%d)" > product.txt
+        run:  echo "Hello world on $(date -I) for ${{ github.ref_name }}" > product.txt
       # - name: Create tag
       #   uses: actions/github-script@v8
       #   with:
