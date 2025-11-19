@@ -15,8 +15,11 @@ jobs:
         run:  echo "Hello world on $(date -I) for ${{ github.ref_name }}" > product.txt
       - name: Create Release
         run:  |
+          release=${{ github.ref_name }}
+          if [[ "$rel" =~ ^.+rc[0-9]+$ ]]; then PRERELEASE="--prerelease"; else PRERELEASE=""; fi
           cat release_notes_template.md | sed -e's/RELEASE/${{ github.ref_name }}/g' > release_notes.md
-          gh release create ${{ github.ref_name }} -d --prerelease -F release_notes.md -t "Release ${{ github.ref_name }}" --latest=false
+          gh release create ${{ github.ref_name }} -d ${PRERELEASE} -F release_notes.md -t "Release ${{ github.ref_name }}" --latest=false
           gh release upload ${{ github.ref_name }} --clobber product.txt
+          gh release edit ${{ github.ref_name }} --draft=false
         env: 
           GH_TOKEN: ${{ github.token }}
