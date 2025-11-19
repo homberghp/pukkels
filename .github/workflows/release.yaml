@@ -1,3 +1,5 @@
+name: Auto Release on push tag
+
 on:
   push:
     tags: [v*, V*]
