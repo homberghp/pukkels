@@ -17,3 +17,4 @@ jobs:
           git config user.email "pieter.van.den.hombergh@gmail.com"
           git add .
           git commit -m "generated"
+          git push
