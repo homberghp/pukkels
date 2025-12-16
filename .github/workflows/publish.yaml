@@ -7,14 +7,23 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - name: checkout
+        uses: actions/checkout@v6
         with:
           ref: ${{ github.head_ref }}
-      - run: |
+          token: "${{secrets.PUBLISH_PAT}}"
+
+      - name: generate
+        run: |
           date >> generated.txt
-          # Note: the following account information will not work on GHES
-          git config user.name "homberghp"
-          git config user.email "pieter.van.den.hombergh@gmail.com"
-          git add .
-          git commit -m "generated"
-          git push
+      - name: commit and push
+        uses: devops-infra/action-commit-push@v1.0.3
+        with: 
+          github_token: "${{secrets.PUBLISH_PAT}}"  
+          add_timestamp: true
+          amend: false
+          commit_prefix: "[AUTO]"
+          commit_message: "Automatic commit"
+          force: false
+          force_with_lease: false
+          no_edit: false
