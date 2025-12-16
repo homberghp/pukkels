@@ -10,7 +10,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v6
         with:
-          token: ${{PUBLISH_PAT}}
+          token: ${{secrets.PUBLISH_PAT}}
       - name: generate
         run: |
           date >> generated.txt
